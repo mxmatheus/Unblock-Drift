@@ -1,0 +1,9 @@
+# Godot 4+ specific ignores
+.godot/
+*.translation
+*.import
+
+# OS & IDE ignores
+.DS_Store
+Thumbs.db
+*.tmp

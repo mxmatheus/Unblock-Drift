@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/phase2/PlayerCarController.gd" id="1_player_car"]
+[ext_resource type="Texture2D" path="res://assets/vehicles/short_vehicles_spritesheet.png" id="2_car_tex"]
+
+[node name="PlayerCar" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_player_car")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_car_tex")
+region_enabled = true
+region_rect = Rect2(445, 15, 105, 215)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-40, -80, 40, -80, 40, 80, -40, 80)
+
+[node name="SkidParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 30
+lifetime = 0.5
+speed_scale = 1.5
+draw_order = 1

@@ -1,0 +1,97 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scenes/phase1_puzzle/Phase1Puzzle.gd" id="1_phase1_puzzle"]
+[ext_resource type="Script" path="res://scripts/phase1/GridSystem.gd" id="2_grid_sys"]
+
+[node name="Phase1Puzzle" type="Node2D"]
+script = ExtResource("1_phase1_puzzle")
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12, 0.14, 0.18, 1)
+
+[node name="GridSystem" type="Node2D" parent="."]
+script = ExtResource("2_grid_sys")
+cell_size = Vector2(95, 95)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="TopBar" type="HBoxContainer" parent="HUD"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 30.0
+offset_top = 40.0
+offset_right = -30.0
+offset_bottom = 100.0
+grow_horizontal = 2
+theme_override_constants/separation = 40
+
+[node name="LevelLabel" type="Label" parent="HUD/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 28
+text = "LEVEL 1"
+
+[node name="MoveLabel" type="Label" parent="HUD/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 28
+text = "MOVES: 10"
+
+[node name="RestartButton" type="Button" parent="HUD/TopBar"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "RETRY"
+
+[node name="OutOfMovesDialog" type="Control" parent="HUD"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Overlay" type="ColorRect" parent="HUD/OutOfMovesDialog"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="VBox" type="VBoxContainer" parent="HUD/OutOfMovesDialog"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -100.0
+offset_right = 180.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="HUD/OutOfMovesDialog/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "OUT OF MOVES!"
+horizontal_alignment = 1
+
+[node name="WatchAdButton" type="Button" parent="HUD/OutOfMovesDialog/VBox"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "🎬 WATCH AD (+3 MOVES)"

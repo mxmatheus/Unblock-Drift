@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/phase2/ParkingSpotChecker.gd" id="1_parking_spot"]
+[ext_resource type="Texture2D" path="res://assets/tileset/parking_spaces_target_spaces_tileset.png" id="2_target_tex"]
+
+[node name="ParkingSpot" type="Area2D"]
+script = ExtResource("1_parking_spot")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.2, 0.8, 1, 0.7)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_target_tex")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-60, -100, 60, -100, 60, 100, -60, 100)
+
+[node name="VisualBox" type="ReferenceRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -100.0
+offset_right = 60.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(0.2, 1, 0.4, 0.8)
+border_width = 3.0
+editor_only = false

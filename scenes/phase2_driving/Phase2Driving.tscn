@@ -1,0 +1,140 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scenes/phase2_driving/Phase2Driving.gd" id="1_phase2_driving"]
+[ext_resource type="PackedScene" path="res://scenes/phase2_driving/PlayerCar.tscn" id="2_player_car"]
+[ext_resource type="PackedScene" path="res://scenes/phase2_driving/ParkingSpot.tscn" id="3_parking_spot"]
+[ext_resource type="Texture2D" path="res://assets/tileset/parking_lot_tileset.png" id="4_asphalt_tex"]
+
+[node name="Phase2Driving" type="Node2D"]
+script = ExtResource("1_phase2_driving")
+
+[node name="AsphaltBackground" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(360, 640)
+texture = ExtResource("4_asphalt_tex")
+region_enabled = true
+region_rect = Rect2(0, 0, 720, 1280)
+
+[node name="ParkingSpot" parent="." instance=ExtResource("3_parking_spot")]
+position = Vector2(360, 300)
+
+[node name="PlayerCar" parent="." instance=ExtResource("2_player_car")]
+position = Vector2(360, 1100)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Controls" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LeftBtn" type="Button" parent="CanvasLayer/Controls"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -180.0
+offset_right = 180.0
+offset_bottom = -40.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "◀"
+
+[node name="RightBtn" type="Button" parent="CanvasLayer/Controls"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 220.0
+offset_top = -180.0
+offset_right = 360.0
+offset_bottom = -40.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "▶"
+
+[node name="HandbrakeBtn" type="Button" parent="CanvasLayer/Controls"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -220.0
+offset_top = -180.0
+offset_right = -40.0
+offset_bottom = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 22
+text = "HANDBRAKE
+(DRIFT)"
+
+[node name="LevelCompleteDialog" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Overlay" type="ColorRect" parent="CanvasLayer/LevelCompleteDialog"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.75)
+
+[node name="VBox" type="VBoxContainer" parent="CanvasLayer/LevelCompleteDialog"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -180.0
+offset_right = 200.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="CanvasLayer/LevelCompleteDialog/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "LEVEL COMPLETE!"
+horizontal_alignment = 1
+
+[node name="StarLabel" type="Label" parent="CanvasLayer/LevelCompleteDialog/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
+theme_override_font_sizes/font_size = 48
+text = "★★★"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/LevelCompleteDialog/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "PARK SCORE: 92.5%"
+horizontal_alignment = 1
+
+[node name="NextBtn" type="Button" parent="CanvasLayer/LevelCompleteDialog/VBox"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "NEXT LEVEL"
+
+[node name="RetryBtn" type="Button" parent="CanvasLayer/LevelCompleteDialog/VBox"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "RETRY"
